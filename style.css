@@ -270,8 +270,7 @@ section {
 
 .about-containers {
     gap: 2rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+    align-self: center;
 }
 
 .about-details-container {
@@ -290,7 +289,7 @@ section {
 .arrow  {
     position: absolute;
     right: -5rem;
-    bottom: 2.5rem;
+    bottom: 5rem;
 }
 
 .details-container {
@@ -305,7 +304,7 @@ section {
 
 .section-container {
     gap: 4rem;
-    height: 45%;
+    height: 55%;
 }
 
 .section__pic-container {
@@ -332,6 +331,7 @@ section {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    height: 110%;
 }
 
 .article-container {
@@ -360,7 +360,13 @@ article .icon {
 
 #projects {
     position: relative;
+    margin: 25rem;
 }
+
+.projects-title{
+    margin: 20;
+}
+
 
 .color-container {
     border-color: rgb(164, 164, 164);
@@ -386,3 +392,54 @@ article .icon {
 
 /* CONTACT SECTION */
 /* ---------------------------------------- */
+
+#contact {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 70vh;
+}
+
+.contact-info-upper-container {
+    display: flex;
+    justify-content: center;
+    border-radius: 2rem;
+    border: rgb(53, 53, 53) 0.1rem solid;
+    border-color: rgb(164, 164, 164);
+    background: rgb(220,220,220);
+    margin: 2rem auto;
+    padding: 0.5rem;
+}
+
+.contact-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem;
+}
+
+.contact-info-container p {
+    font-size: larger;
+}
+
+.contact-icon {
+    cursor: default;
+    height: 2rem;
+}
+
+.email-icon {
+    height: 2.5rem;
+}
+
+/* CONTACT SECTION */
+/* ---------------------------------------- */
+
+footer {
+    height: 26vh;
+    margin: 0 1rem;
+}
+
+footer p {
+    text-align: center;
+}
