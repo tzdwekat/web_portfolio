@@ -360,35 +360,36 @@ article .icon {
 
 #projects {
     position: relative;
-    margin: 25rem;
-}
-
-.projects-title{
-    margin: 20;
-}
-
-
-.color-container {
-    border-color: rgb(164, 164, 164);
-    background: rgb(220,220,220);
-}
-
-.project-img {
+    margin: 20rem;
+    align-self: center;
+  }
+  
+  .color-container {
+    border-color: rgb(163, 163, 163);
+    background: rgb(220, 220, 220);
+    margin-top: -10px;
+  }
+  
+  .project-img {
     border-radius: 2rem;
     width: 90%;
     height: 90%;
-    align-self: center;
-}
-
-.project-title {
+  }
+  
+  .project-title {
     margin: 1rem;
     color: black;
-}
+    align-self: center;
+  }
 
-.project-btn {
-    color:black;
-    border-color: rgb(164, 164, 164);
-}
+  .projects-sub-title {
+    align-self: center;
+  }
+  
+  .project-btn {
+    color: black;
+    border-color: rgb(163, 163, 163);
+  }
 
 /* CONTACT SECTION */
 /* ---------------------------------------- */
