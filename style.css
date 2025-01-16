@@ -267,8 +267,8 @@ section {
 }
 
 .about-containers {
-    gap: 1.5rem; /* Adjusted gap for alignment */
-    align-self: center;
+    gap: 1rem; /* Adjusted gap for alignment */
+    align-self: left;
     display: flex;
     flex-wrap: wrap;
 }
@@ -281,12 +281,13 @@ section {
 }
 
 .about-pic {
-    border-radius: 2rem;
+    border-radius: 0.5rem;
 }
 
 .arrow {
     position: absolute;
     left: 50%;
+    bottom: 0;
     transform: translateX(-50%);
     bottom: -1rem; /* Centered and aligned below visible content */
 }
@@ -304,6 +305,7 @@ section {
 .section-container {
     gap: 2rem; /* Reduced gap for closer spacing */
     height: 55%;
+    padding-bottom: 2rem;
 }
 
 /* BUTTONS */
@@ -364,8 +366,9 @@ article .icon {
 
 .project-img {
     border-radius: 2rem;
-    width: 90%;
-    height: 90%;
+    width: 300px;
+    height: 300px;
+    align-self: center;
 }
 
 .project-title {

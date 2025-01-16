@@ -23,6 +23,7 @@
     }
     .arrow {
         display: none;
+        bottom: 10px;
     }
     section, .section-container {
         height: fit-content;
