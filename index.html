@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tariq Dwekat — Product Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #111111;
+            --paper: #F7F5F2;
+            --stone: #6B6560;
+            --accent: #2B5797;
+            --accent-light: #E8EFF8;
+            --warm-gray: #E8E4DF;
+            --card-bg: #FFFFFF;
+            --radius: 12px;
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: var(--accent-light); color: var(--accent); }
+
+        /* ========== NAV ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(247, 245, 242, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--stone);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--ink); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--ink);
+            transition: all 0.3s;
+            display: block;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: var(--paper);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 1rem 2rem;
+        }
+
+        .mobile-menu.open { display: block; }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem 0;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--warm-gray);
+        }
+
+        /* ========== SECTIONS ========== */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 64px;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--stone);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 480px;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-links a, .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .btn-primary {
+            background: var(--ink);
+            color: white;
+        }
+
+        .btn-primary:hover { background: #333; transform: translateY(-1px); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--ink);
+            border: 1.5px solid var(--warm-gray);
+        }
+
+        .btn-outline:hover { border-color: var(--ink); }
+
+        .hero-photo {
+            position: relative;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 16px;
+            object-fit: cover;
+            aspect-ratio: 4/5;
+            display: block;
+            margin-left: auto;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            padding: 0.35rem 0.85rem;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 600;
+            border-radius: 100px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ========== VIDEOS ========== */
+        #content { background: white; }
+        #content > div { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .video-card {
+            background: var(--paper);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .video-card iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+            display: block;
+        }
+
+        .video-card .video-info {
+            padding: 1rem 1.25rem;
+        }
+
+        .video-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .video-card p {
+            font-size: 0.8rem;
+            color: var(--stone);
+        }
+
+        /* ========== EXPERIENCE ========== */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 2px;
+            background: var(--warm-gray);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item:last-child { margin-bottom: 0; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--paper);
+            margin-left: -4px;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-role {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .timeline-meta {
+            font-size: 0.82rem;
+            color: var(--stone);
+            font-weight: 500;
+        }
+
+        .timeline-bullets {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-bullets li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.65;
+        }
+
+        .timeline-bullets li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ========== SKILLS ========== */
+        #skills { background: white; }
+        #skills > div { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            padding: 2rem;
+            background: var(--paper);
+            border-radius: var(--radius);
+            border: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .skill-card:hover { border-color: var(--accent); }
+
+        .skill-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .skill-pill {
+            padding: 0.3rem 0.7rem;
+            background: white;
+            border: 1px solid var(--warm-gray);
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        /* ========== EDUCATION ========== */
+        .edu-row {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .edu-item h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .edu-item p {
+            font-size: 0.9rem;
+            color: var(--stone);
+        }
+
+        .cert-list {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .cert-badge {
+            padding: 0.5rem 1rem;
+            background: var(--accent-light);
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--accent);
+        }
+
+        /* ========== CONTACT ========== */
+        #contact { background: var(--ink); color: white; }
+        #contact > div { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
+
+        #contact .section-label { color: rgba(255,255,255,0.5); }
+        #contact .section-title { color: white; }
+
+        .contact-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.25s;
+        }
+
+        .contact-link:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .contact-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ========== ADMIN PANEL ========== */
+        .admin-trigger {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--ink);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+            z-index: 200;
+        }
+
+        .admin-trigger:hover { opacity: 1; }
+
+        .admin-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-overlay.open { display: flex; }
+
+        .admin-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 440px;
+            width: 90%;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+        }
+
+        .admin-panel h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-panel p {
+            font-size: 0.85rem;
+            color: var(--stone);
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-panel label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--stone);
+            margin-bottom: 0.4rem;
+        }
+
+        .admin-panel input[type="password"],
+        .admin-panel input[type="text"] {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1.5px solid var(--warm-gray);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: var(--font-body);
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .admin-panel input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .admin-panel .btn {
+            width: 100%;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+        }
+
+        .upload-zone {
+            border: 2px dashed var(--warm-gray);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s;
+            margin-bottom: 1rem;
+        }
+
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .upload-zone p { margin: 0; }
+        .upload-zone .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .upload-zone .file-name { font-weight: 600; color: var(--accent); }
+
+        .admin-msg {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .admin-msg.success { display: block; background: #E8F5E9; color: #2E7D32; }
+        .admin-msg.error { display: block; background: #FFEBEE; color: #C62828; }
+
+        .hidden { display: none; }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--ink);
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        footer > div {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.8rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 2.75rem; }
+            .hero-subtitle { margin: 0 auto 2rem; }
+            .hero-links { justify-content: center; }
+            .hero-tags { justify-content: center; }
+            .hero-photo img { margin: 2rem auto 0; max-width: 300px; }
+            .hero-photo { order: -1; }
+            .video-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .section-title { font-size: 2rem; }
+        }
+
+        @media (max-width: 600px) {
+            section, #content > div, #skills > div, #contact > div { padding: 4rem 1.25rem; }
+            .hero-text h1 { font-size: 2.25rem; }
+            .timeline { padding-left: 1.5rem; }
+            .timeline-header { flex-direction: column; }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Tariq Dwekat</a>
+        <ul class="nav-links">
+            <li><a href="#content">Content</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#content" onclick="toggleMobile()">Content</a>
+        <a href="#experience" onclick="toggleMobile()">Experience</a>
+        <a href="#skills" onclick="toggleMobile()">Skills</a>
+        <a href="#contact" onclick="toggleMobile()">Contact</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-tags">
+                <span class="tag">Data Products</span>
+                <span class="tag">Analytics Platforms</span>
+                <span class="tag">GTM Strategy</span>
+                <span class="tag">Cross-Functional Delivery</span>
+            </div>
+            <h1>Tariq Dwekat<br><em>Product Manager</em></h1>
+            <p class="hero-subtitle">
+                Technical product leader and subject matter expert on data products and analytics platforms. I ship solutions that turn ad-hoc workflows into self-serve insights — and I make content about the ideas that shape how we think.
+            </p>
+            <div class="hero-links">
+                <a href="./assets/tariq-resume.pdf" target="_blank" class="btn btn-primary">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                    Resume
+                </a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <img src="./assets/profile-pic-1.jpg" alt="Tariq Dwekat" />
+        </div>
+    </div>
+</section>
+
+<!-- CONTENT / VIDEOS -->
+<section id="content">
+    <div>
+        <p class="section-label">Latest Content</p>
+        <h2 class="section-title">tariqthinks</h2>
+        <p style="color: var(--stone); margin-bottom: 2rem; max-width: 600px;">
+            Video essays blending philosophical and psychological themes with film, anime, and pop culture analysis.
+        </p>
+        <div class="video-grid" id="videoGrid">
+            <!-- Auto-populated from YouTube RSS feed -->
+            <div class="video-loading" style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--stone);">
+                Loading latest videos...
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <p class="section-label">Professional Experience</p>
+    <h2 class="section-title">Where I've Shipped</h2>
+    <div class="timeline">
+        <!-- AMD -->
+        <div class="timeline-item fade-up">
+            <div class="timeline-header">
+                <span class="timeline-role">Data Engineer — AMD</span>
+                <span class="timeline-meta">Austin, TX · Nov 2025 – Present</span>
+            </div>
+            <ul class="timeline-bullets">
+                <li>Shipped executive Power BI dashboards on a curated star schema semantic layer that directly informed multimillion-dollar headcount and budget allocation decisions across business units</li>
+                <li>Cut report latency 40% and compute costs 20% by identifying bottlenecks and driving optimization initiatives (aggregated fact tables, query tuning)</li>
+                <li>SME on Snowflake data architecture for Finance and HR analytics — defined KPIs with Finance leadership, built OLAP data marts, and eliminated 60% of ad-hoc reporting requests</li>
+            </ul>
+        </div>
+        <!-- Schwab -->
+        <div class="timeline-item fade-up">
+            <div class="timeline-header">
+                <span class="timeline-role">Software Engineer – Specialist, Charles Schwab</span>
+                <span class="timeline-meta">Westlake, TX · Jan 2023 – Nov 2025</span>
+            </div>
+            <ul class="timeline-bullets">
+                <li>Built an automated BigQuery and Cloud SQL validation pipeline that improved query performance 50% and established the data quality standard adopted org-wide</li>
+                <li>Owned observability end-to-end: scoped requirements with on-call teams, shipped Grafana/Prometheus dashboards with Kafka-streamed metrics, and cut incident detection time 20%</li>
+                <li>Led CI/CD migration from Bamboo to GitHub Actions — evaluated options, built the business case, executed phased rollout, and drove adoption, cutting deployment times 40%</li>
+                <li>Authored technical documentation and analytics dashboards for CI/CD and incident response workflows, adopted as the standard across multiple business units and referenced by 1,000+ engineers</li>
+            </ul>
+        </div>
+        <!-- Adobe -->
+        <div class="timeline-item fade-up">
+            <div class="timeline-header">
+                <span class="timeline-role">Network Reliability Engineering Intern, Adobe</span>
+                <span class="timeline-meta">San Jose, CA · May 2022 – Aug 2022</span>
+            </div>
+            <ul class="timeline-bullets">
+                <li>Identified certificate renewal as a reliability bottleneck and built Python (Flask) APIs to automate lifecycle management — achieved 99.9% uptime, reduced manual toil 90%</li>
+            </ul>
+        </div>
+        <!-- tariqthinks -->
+        <div class="timeline-item fade-up">
+            <div class="timeline-header">
+                <span class="timeline-role">Founder & Creator — @tariqthinks</span>
+                <span class="timeline-meta">YouTube · Substack · TikTok · Instagram · 2024 – Present</span>
+            </div>
+            <ul class="timeline-bullets">
+                <li>Launched a multi-platform content product from zero, independently owning end-to-end product lifecycle: audience research, content strategy, production, distribution, and iteration based on performance data</li>
+                <li>Developed a differentiated positioning strategy blending philosophical and psychological frameworks with media analysis, carving out a distinct niche in a saturated content landscape</li>
+                <li>Built and managed a multi-channel distribution pipeline (YouTube long-form, TikTok/Reels short-form, Substack written), adapting content to platform-specific audience behaviors</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div>
+        <p class="section-label">Core Competencies</p>
+        <h2 class="section-title">What I Bring</h2>
+        <div class="skills-grid">
+            <div class="skill-card fade-up">
+                <h3>Product Strategy & GTM</h3>
+                <div class="skill-list">
+                    <span class="skill-pill">Roadmap Prioritization</span>
+                    <span class="skill-pill">GTM Execution</span>
+                    <span class="skill-pill">Adoption Strategy</span>
+                    <span class="skill-pill">Requirements Definition</span>
+                    <span class="skill-pill">KPI Design</span>
+                    <span class="skill-pill">Stakeholder Management</span>
+                    <span class="skill-pill">User Research</span>
+                    <span class="skill-pill">Technical Enablement</span>
+                </div>
+            </div>
+            <div class="skill-card fade-up">
+                <h3>Technical Depth</h3>
+                <div class="skill-list">
+                    <span class="skill-pill">SQL</span>
+                    <span class="skill-pill">Python</span>
+                    <span class="skill-pill">Snowflake</span>
+                    <span class="skill-pill">BigQuery</span>
+                    <span class="skill-pill">dbt</span>
+                    <span class="skill-pill">GCP</span>
+                    <span class="skill-pill">AWS</span>
+                    <span class="skill-pill">Docker</span>
+                    <span class="skill-pill">Kubernetes</span>
+                    <span class="skill-pill">CI/CD</span>
+                    <span class="skill-pill">Kafka</span>
+                    <span class="skill-pill">REST APIs</span>
+                </div>
+            </div>
+            <div class="skill-card fade-up">
+                <h3>Analytics & Insights</h3>
+                <div class="skill-list">
+                    <span class="skill-pill">Power BI</span>
+                    <span class="skill-pill">Tableau</span>
+                    <span class="skill-pill">Star Schema</span>
+                    <span class="skill-pill">Dimensional Modeling</span>
+                    <span class="skill-pill">ELT Pipeline Design</span>
+                    <span class="skill-pill">Grafana</span>
+                    <span class="skill-pill">Prometheus</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education & Certs -->
+        <div style="margin-top: 3rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem;">Education & Certifications</h3>
+            <div class="edu-row">
+                <div class="edu-item">
+                    <h3>North Carolina State University</h3>
+                    <p>B.S. Computer Engineering · Dec 2022</p>
+                </div>
+            </div>
+            <div class="cert-list">
+                <span class="cert-badge">Google Certified Associate Cloud Engineer</span>
+                <span class="cert-badge">Fast.AI: Practical Deep Learning for Coders</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div>
+        <p class="section-label">Get in Touch</p>
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-grid">
+            <a href="mailto:tariqzdwekat@gmail.com" class="contact-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                tariqzdwekat@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/tariq-dwekat/" target="_blank" class="contact-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+            </a>
+            <a href="https://github.com/tzdwekat" target="_blank" class="contact-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                GitHub
+            </a>
+            <a href="https://www.youtube.com/@tariqthinks" target="_blank" class="contact-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><polygon fill="white" points="9.545,15.568 15.818,12 9.545,8.432"/></svg>
+                YouTube
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div>&copy; 2026 Tariq Dwekat. All rights reserved.</div>
+</footer>
+
+<!-- ADMIN BUTTON -->
+<button class="admin-trigger" onclick="openAdmin()" aria-label="Admin">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+</button>
+
+<!-- ADMIN OVERLAY -->
+<div class="admin-overlay" id="adminOverlay">
+    <div class="admin-panel">
+        <h2>Update Resume</h2>
+        <p>Upload a new resume PDF. This will commit it directly to your GitHub repo and update the live site.</p>
+
+        <!-- Step 1: Password -->
+        <div id="adminStep1">
+            <label for="adminPass">Password</label>
+            <input type="password" id="adminPass" placeholder="Enter admin password" onkeydown="if(event.key==='Enter') checkPassword()">
+            <button class="btn btn-primary" onclick="checkPassword()">Unlock</button>
+            <div class="admin-msg" id="passMsg"></div>
+        </div>
+
+        <!-- Step 2: Upload (hidden until password correct) -->
+        <div id="adminStep2" class="hidden">
+            <label>GitHub Personal Access Token</label>
+            <input type="text" id="ghToken" placeholder="ghp_..." value="">
+            <p style="font-size:0.75rem; color:var(--stone); margin-top:-0.75rem; margin-bottom:1rem;">
+                Needs repo scope. Stored in your browser only.
+            </p>
+
+            <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                <p class="upload-icon">&#128196;</p>
+                <p id="uploadLabel">Click to select PDF or drag & drop</p>
+            </div>
+            <input type="file" id="fileInput" accept=".pdf" style="display:none" onchange="handleFile(this.files[0])">
+
+            <button class="btn btn-primary" id="uploadBtn" onclick="uploadResume()" disabled>Upload & Deploy</button>
+            <div class="admin-msg" id="uploadMsg"></div>
+        </div>
+
+        <button style="position:absolute; top:1rem; right:1rem; background:none; border:none; cursor:pointer; font-size:1.25rem; color:var(--stone);" onclick="closeAdmin()">&times;</button>
+    </div>
+</div>
+
+<script>
+// =============================================
+// AUTO-FETCH YOUTUBE VIDEOS (YouTube Data API v3)
+// =============================================
+// Get your free API key: console.cloud.google.com
+// 1. Create project → Enable "YouTube Data API v3" → Create API Key
+// 2. Restrict key to: YouTube Data API v3 + your domain (tariqdwekat.com)
+// 3. Paste below
+const YT_API_KEY = 'AIzaSyA9fqb_zAinLK31fXCPxBF6bPQSyQbIw_M'; // <-- PASTE YOUR YOUTUBE API KEY
+const YT_CHANNEL_ID = 'UCdla7CUFF-zGfX6SySugZ0Q';
+const YT_UPLOADS_PLAYLIST = 'UUdla7CUFF-zGfX6SySugZ0Q'; // UC → UU
+
+async function loadVideos() {
+    const grid = document.getElementById('videoGrid');
+
+    if (YT_API_KEY === 'YOUR_API_KEY_HERE') {
+        grid.innerHTML = `
+            <div style="grid-column:1/-1; text-align:center; padding:3rem;">
+                <p style="color:var(--stone); margin-bottom:0.5rem; font-weight:600;">Setup required</p>
+                <p style="color:var(--stone); font-size:0.85rem;">
+                    Open index.html and set your YouTube Data API key.<br>
+                    See comments in the code for instructions.
+                </p>
+            </div>`;
+        return;
+    }
+
+    try {
+        const res = await fetch(
+            `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=3&playlistId=${YT_UPLOADS_PLAYLIST}&key=${YT_API_KEY}`
+        );
+
+        if (!res.ok) throw new Error(`API returned ${res.status}`);
+        const data = await res.json();
+
+        if (!data.items || data.items.length === 0) throw new Error('No videos found');
+
+        grid.innerHTML = '';
+        data.items.forEach((item, i) => {
+            const videoId = item.snippet.resourceId.videoId;
+            const title = item.snippet.title;
+            const pubDate = new Date(item.snippet.publishedAt).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric'
+            });
+
+            const card = document.createElement('div');
+            card.className = 'video-card fade-up';
+            card.innerHTML = `
+                <iframe 
+                    src="https://www.youtube.com/embed/${videoId}" 
+                    title="${title}" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen 
+                    loading="lazy">
+                </iframe>
+                <div class="video-info">
+                    <h3>${title}</h3>
+                    <p>${pubDate}</p>
+                </div>
+            `;
+            grid.appendChild(card);
+            setTimeout(() => card.classList.add('visible'), 100 + i * 150);
+        });
+    } catch (err) {
+        console.error('Failed to load videos:', err);
+        grid.innerHTML = `
+            <div style="grid-column:1/-1; text-align:center; padding:3rem;">
+                <p style="color:var(--stone); margin-bottom:1rem;">Couldn't load videos automatically.</p>
+                <a href="https://www.youtube.com/@TariqThinks" target="_blank" class="btn btn-outline" style="display:inline-flex;">
+                    Watch on YouTube →
+                </a>
+            </div>
+        `;
+    }
+}
+
+loadVideos();
+
+// Mobile menu
+function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Admin panel
+// Set your password hash here (SHA-256 of your chosen password)
+// Default password: "tariq2026" — change this by updating the hash
+const PASS_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'; // "password" — CHANGE THIS
+
+async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function openAdmin() {
+    document.getElementById('adminOverlay').classList.add('open');
+}
+
+function closeAdmin() {
+    document.getElementById('adminOverlay').classList.remove('open');
+}
+
+document.getElementById('adminOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeAdmin();
+});
+
+async function checkPassword() {
+    const pass = document.getElementById('adminPass').value;
+    const hash = await sha256(pass);
+    const msg = document.getElementById('passMsg');
+
+    if (hash === PASS_HASH) {
+        document.getElementById('adminStep1').classList.add('hidden');
+        document.getElementById('adminStep2').classList.remove('hidden');
+        // Load saved token
+        const saved = localStorage.getItem('gh_token');
+        if (saved) document.getElementById('ghToken').value = saved;
+    } else {
+        msg.className = 'admin-msg error';
+        msg.textContent = 'Incorrect password.';
+    }
+}
+
+// File handling
+let selectedFile = null;
+
+function handleFile(file) {
+    if (!file || file.type !== 'application/pdf') {
+        alert('Please select a PDF file.');
+        return;
+    }
+    selectedFile = file;
+    document.getElementById('uploadLabel').innerHTML = '<span class="file-name">' + file.name + '</span>';
+    document.getElementById('uploadBtn').disabled = false;
+}
+
+// Drag and drop
+const zone = document.getElementById('uploadZone');
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    handleFile(e.dataTransfer.files[0]);
+});
+
+// Upload to GitHub
+async function uploadResume() {
+    const token = document.getElementById('ghToken').value.trim();
+    const msg = document.getElementById('uploadMsg');
+    const btn = document.getElementById('uploadBtn');
+
+    if (!token) { msg.className = 'admin-msg error'; msg.textContent = 'Please enter your GitHub token.'; return; }
+    if (!selectedFile) { msg.className = 'admin-msg error'; msg.textContent = 'Please select a file.'; return; }
+
+    // Save token locally
+    localStorage.setItem('gh_token', token);
+
+    btn.disabled = true;
+    btn.textContent = 'Uploading...';
+
+    try {
+        const base64 = await fileToBase64(selectedFile);
+        const path = 'assets/tariq-resume.pdf';
+        const repo = 'tzdwekat/web_portfolio';
+
+        // Get current file SHA (needed for update)
+        const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+            headers: { 'Authorization': `token ${token}` }
+        });
+
+        let sha = undefined;
+        if (getRes.ok) {
+            const data = await getRes.json();
+            sha = data.sha;
+        }
+
+        // Commit new file
+        const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Update resume PDF',
+                content: base64,
+                sha: sha
+            })
+        });
+
+        if (putRes.ok) {
+            msg.className = 'admin-msg success';
+            msg.textContent = 'Resume updated! GitHub Pages will redeploy in ~60 seconds.';
+        } else {
+            const err = await putRes.json();
+            throw new Error(err.message || 'Upload failed');
+        }
+    } catch (e) {
+        msg.className = 'admin-msg error';
+        msg.textContent = 'Error: ' + e.message;
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Upload & Deploy';
+}
+
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
+</script>
+
+</body>
+</html>
