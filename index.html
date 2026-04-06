@@ -253,7 +253,8 @@
         }
 
         /* ========== VIDEOS ========== */
-        #content { background: white; }
+        /* FIX: zero out section padding so inner div controls it exclusively */
+        #content { background: white; max-width: 100%; padding: 0; }
         #content > div { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
 
         .video-grid {
@@ -376,7 +377,8 @@
         }
 
         /* ========== SKILLS ========== */
-        #skills { background: white; }
+        /* FIX: zero out section padding so inner div controls it exclusively */
+        #skills { background: white; max-width: 100%; padding: 0; }
         #skills > div { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
 
         .skills-grid {
@@ -451,7 +453,8 @@
         }
 
         /* ========== CONTACT ========== */
-        #contact { background: var(--ink); color: white; }
+        /* FIX: zero out section padding so inner div controls it exclusively */
+        #contact { background: var(--ink); color: white; max-width: 100%; padding: 0; }
         #contact > div { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
 
         #contact .section-label { color: rgba(255,255,255,0.5); }
@@ -530,6 +533,7 @@
             max-width: 440px;
             width: 90%;
             box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+            position: relative;
         }
 
         .admin-panel h2 {
@@ -778,7 +782,6 @@
             Video essays blending philosophical and psychological themes with film, anime, and pop culture analysis.
         </p>
         <div class="video-grid" id="videoGrid">
-            <!-- Auto-populated from YouTube RSS feed -->
             <div class="video-loading" style="grid-column: 1/-1; text-align:center; padding:3rem; color:var(--stone);">
                 Loading latest videos...
             </div>
@@ -836,7 +839,6 @@
             </div>
         </div>
 
-        <!-- Education & Certs -->
         <div style="margin-top: 3rem;">
             <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem;">Education & Certifications</h3>
             <div class="edu-row">
@@ -872,7 +874,7 @@
                 GitHub
             </a>
             <a href="https://www.youtube.com/@tariqthinks" target="_blank" class="contact-link">
-                <img src="./assets/youtube-icon.png" alt="YouTube" style="width:18px; height:18px;">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 YouTube
             </a>
         </div>
@@ -894,7 +896,6 @@
         <h2>Update Resume</h2>
         <p>Upload a new resume PDF. This will commit it directly to your GitHub repo and update the live site.</p>
 
-        <!-- Step 1: Password -->
         <div id="adminStep1">
             <label for="adminPass">Password</label>
             <input type="password" id="adminPass" placeholder="Enter admin password" onkeydown="if(event.key==='Enter') checkPassword()">
@@ -902,7 +903,6 @@
             <div class="admin-msg" id="passMsg"></div>
         </div>
 
-        <!-- Step 2: Upload (hidden until password correct) -->
         <div id="adminStep2" class="hidden">
             <label>GitHub Personal Access Token</label>
             <input type="text" id="ghToken" placeholder="ghp_..." value="">
@@ -925,40 +925,18 @@
 </div>
 
 <script>
-// =============================================
-// AUTO-FETCH YOUTUBE VIDEOS (YouTube Data API v3)
-// =============================================
-// Get your free API key: console.cloud.google.com
-// 1. Create project → Enable "YouTube Data API v3" → Create API Key
-// 2. Restrict key to: YouTube Data API v3 + your domain (tariqdwekat.com)
-// 3. Paste below
-const YT_API_KEY = 'AIzaSyA9fqb_zAinLK31fXCPxBF6bPQSyQbIw_M'; // <-- PASTE YOUR YOUTUBE API KEY
+const YT_API_KEY = 'AIzaSyA9fqb_zAinLK31fXCPxBF6bPQSyQbIw_M';
 const YT_CHANNEL_ID = 'UCdla7CUFF-zGfX6SySugZ0Q';
-const YT_UPLOADS_PLAYLIST = 'UUdla7CUFF-zGfX6SySugZ0Q'; // UC → UU
+const YT_UPLOADS_PLAYLIST = 'UUdla7CUFF-zGfX6SySugZ0Q';
 
 async function loadVideos() {
     const grid = document.getElementById('videoGrid');
-
-    if (YT_API_KEY === 'YOUR_API_KEY_HERE') {
-        grid.innerHTML = `
-            <div style="grid-column:1/-1; text-align:center; padding:3rem;">
-                <p style="color:var(--stone); margin-bottom:0.5rem; font-weight:600;">Setup required</p>
-                <p style="color:var(--stone); font-size:0.85rem;">
-                    Open index.html and set your YouTube Data API key.<br>
-                    See comments in the code for instructions.
-                </p>
-            </div>`;
-        return;
-    }
-
     try {
         const res = await fetch(
             `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=3&playlistId=${YT_UPLOADS_PLAYLIST}&key=${YT_API_KEY}`
         );
-
         if (!res.ok) throw new Error(`API returned ${res.status}`);
         const data = await res.json();
-
         if (!data.items || data.items.length === 0) throw new Error('No videos found');
 
         grid.innerHTML = '';
@@ -968,22 +946,16 @@ async function loadVideos() {
             const pubDate = new Date(item.snippet.publishedAt).toLocaleDateString('en-US', {
                 year: 'numeric', month: 'short', day: 'numeric'
             });
-
             const card = document.createElement('div');
             card.className = 'video-card fade-up';
             card.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${videoId}" 
-                    title="${title}" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen 
-                    loading="lazy">
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/${videoId}" title="${title}"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen loading="lazy"></iframe>
                 <div class="video-info">
                     <h3>${title}</h3>
                     <p>${pubDate}</p>
-                </div>
-            `;
+                </div>`;
             grid.appendChild(card);
             setTimeout(() => card.classList.add('visible'), 100 + i * 150);
         });
@@ -992,44 +964,33 @@ async function loadVideos() {
         grid.innerHTML = `
             <div style="grid-column:1/-1; text-align:center; padding:3rem;">
                 <p style="color:var(--stone); margin-bottom:1rem;">Couldn't load videos automatically.</p>
-                <a href="https://www.youtube.com/@TariqThinks" target="_blank" class="btn btn-outline" style="display:inline-flex;">
+                <a href="https://www.youtube.com/@tariqthinks" target="_blank" class="btn btn-outline" style="display:inline-flex;">
                     Watch on YouTube →
                 </a>
-            </div>
-        `;
+            </div>`;
     }
 }
 
 loadVideos();
 
-// Mobile menu
 function toggleMobile() {
     document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-// Scroll animations
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Admin panel
-// Set your password hash here (SHA-256 of your chosen password)
-// Default password: "tariq2026" — change this by updating the hash
-const PASS_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'; // "password" — CHANGE THIS
+const PASS_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8';
 
 async function sha256(str) {
     const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
     return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-function openAdmin() {
-    document.getElementById('adminOverlay').classList.add('open');
-}
-
-function closeAdmin() {
-    document.getElementById('adminOverlay').classList.remove('open');
-}
+function openAdmin() { document.getElementById('adminOverlay').classList.add('open'); }
+function closeAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
 
 document.getElementById('adminOverlay').addEventListener('click', function(e) {
     if (e.target === this) closeAdmin();
@@ -1039,11 +1000,9 @@ async function checkPassword() {
     const pass = document.getElementById('adminPass').value;
     const hash = await sha256(pass);
     const msg = document.getElementById('passMsg');
-
     if (hash === PASS_HASH) {
         document.getElementById('adminStep1').classList.add('hidden');
         document.getElementById('adminStep2').classList.remove('hidden');
-        // Load saved token
         const saved = localStorage.getItem('gh_token');
         if (saved) document.getElementById('ghToken').value = saved;
     } else {
@@ -1052,74 +1011,43 @@ async function checkPassword() {
     }
 }
 
-// File handling
 let selectedFile = null;
 
 function handleFile(file) {
-    if (!file || file.type !== 'application/pdf') {
-        alert('Please select a PDF file.');
-        return;
-    }
+    if (!file || file.type !== 'application/pdf') { alert('Please select a PDF file.'); return; }
     selectedFile = file;
     document.getElementById('uploadLabel').innerHTML = '<span class="file-name">' + file.name + '</span>';
     document.getElementById('uploadBtn').disabled = false;
 }
 
-// Drag and drop
 const zone = document.getElementById('uploadZone');
 zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
 zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
-zone.addEventListener('drop', e => {
-    e.preventDefault();
-    zone.classList.remove('dragover');
-    handleFile(e.dataTransfer.files[0]);
-});
+zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('dragover'); handleFile(e.dataTransfer.files[0]); });
 
-// Upload to GitHub
 async function uploadResume() {
     const token = document.getElementById('ghToken').value.trim();
     const msg = document.getElementById('uploadMsg');
     const btn = document.getElementById('uploadBtn');
-
     if (!token) { msg.className = 'admin-msg error'; msg.textContent = 'Please enter your GitHub token.'; return; }
     if (!selectedFile) { msg.className = 'admin-msg error'; msg.textContent = 'Please select a file.'; return; }
-
-    // Save token locally
     localStorage.setItem('gh_token', token);
-
     btn.disabled = true;
     btn.textContent = 'Uploading...';
-
     try {
         const base64 = await fileToBase64(selectedFile);
         const path = 'assets/tariq-resume.pdf';
         const repo = 'tzdwekat/web_portfolio';
-
-        // Get current file SHA (needed for update)
         const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
             headers: { 'Authorization': `token ${token}` }
         });
-
         let sha = undefined;
-        if (getRes.ok) {
-            const data = await getRes.json();
-            sha = data.sha;
-        }
-
-        // Commit new file
+        if (getRes.ok) { const data = await getRes.json(); sha = data.sha; }
         const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
             method: 'PUT',
-            headers: {
-                'Authorization': `token ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: 'Update resume PDF',
-                content: base64,
-                sha: sha
-            })
+            headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: 'Update resume PDF', content: base64, sha })
         });
-
         if (putRes.ok) {
             msg.className = 'admin-msg success';
             msg.textContent = 'Resume updated! GitHub Pages will redeploy in ~60 seconds.';
@@ -1131,7 +1059,6 @@ async function uploadResume() {
         msg.className = 'admin-msg error';
         msg.textContent = 'Error: ' + e.message;
     }
-
     btn.disabled = false;
     btn.textContent = 'Upload & Deploy';
 }
